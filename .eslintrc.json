@@ -16,7 +16,7 @@
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/no-explicit-any": 0
   },
-  "ignorePatterns": ["*.config.js", "*.test.js", "__mocks__/**/*"],
+  "ignorePatterns": ["*.test.js", "__mocks__/**/*"],
   "plugins": [
     "import",
     "react",
@@ -43,6 +43,11 @@
     },
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     }
   }
 }
