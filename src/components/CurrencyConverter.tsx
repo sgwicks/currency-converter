@@ -17,6 +17,7 @@ const CurrencyConverter = () => {
   const from = useAppSelector((state) => state.currencies.from)
   const to = useAppSelector((state) => state.currencies.to)
   const details = useAppSelector((state) => state.currencies.details)
+  const currencyLoading = useAppSelector((state) => state.currencies.loading)
   const dispatch = useAppDispatch()
 
   // Essentially, load the possible options when we load this component
@@ -32,12 +33,12 @@ const CurrencyConverter = () => {
   }
 
   const getDetails = async (code: string) => {
-    setCurrencyLoading(true)
+    dispatch(setCurrencyLoading(true))
     try {
       const currencyJSON = await getCurrency(code)
       dispatch(setCurrencyDetails(currencyJSON))
     } finally {
-      setLoading(false)
+      dispatch(setCurrencyLoading(false))
     }
   }
 
@@ -52,7 +53,7 @@ const CurrencyConverter = () => {
 
   useEffect(() => {
     if (!details || !to || !from) return
-    const rate = details[to.toLowerCase()].rate
+    const rate = details[to.toLowerCase()]?.rate || 0
     const total = amount * rate
     dispatch(setOutput(Number(total.toFixed(2))))
   }, [details, from, to, amount, dispatch])
@@ -68,7 +69,7 @@ const CurrencyConverter = () => {
         onChange={(e) => dispatch(setAmount(Number(e.target.value)))}
       />
       <CurrencySelect type="to" />
-      <div>Total: {output}</div>
+      <div>Total: {currencyLoading ? 'Calculating...' : output}</div>
     </div>
   )
 }

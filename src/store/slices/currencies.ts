@@ -53,6 +53,7 @@ export const currencySlice = createSlice({
       state.output = action.payload
     },
     setCurrencyLoading: (state, action: PayloadAction<boolean>) => {
+      console.log(action.payload)
       state.loading = action.payload
     },
     setCurrencyDetails: (state, action: PayloadAction<Currency>) => {
