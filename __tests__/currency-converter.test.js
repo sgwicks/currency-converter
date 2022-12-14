@@ -6,7 +6,11 @@ import { Provider } from 'react-redux'
 
 import CurrencySelect from '../src/components/CurrencySelect.tsx'
 
-import { setOptions } from '../src/store/slices/currencies'
+import reducer, { setOptions, reset } from '../src/store/slices/currencies'
+
+beforeEach(() => {
+  store.dispatch(reset())
+})
 
 describe('CurrencyConverter', () => {
   describe('CurrencySelect', () => {
@@ -39,6 +43,36 @@ describe('CurrencyConverter', () => {
       getByText('Euro')
       getByText('Australian Dollar')
       getByText('U.S. Dollar')
+    })
+
+    test('Can select a base currency', async () => {
+      store.dispatch(
+        setOptions([
+          {
+            code: 'USD',
+            name: 'U.S. Dollar'
+          },
+          {
+            code: 'EUR',
+            name: 'Euro'
+          },
+          {
+            code: 'AUD',
+            name: 'Australian Dollar'
+          }
+        ])
+      )
+
+      const user = userEvent.setup()
+      const { getByRole, getByText } = render(
+        <Provider store={store}>
+          <CurrencySelect />
+        </Provider>
+      )
+
+      const select = getByRole('combobox')
+      await user.click(select)
+      await user.click('Euro')
     })
   })
 })

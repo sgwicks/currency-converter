@@ -23,7 +23,7 @@ const CurrencyConverter = () => {
     void getOptions()
   }, []) /*eslint-disable-line */ // wants to add getOptions as a dependency, but that's infinite
 
-  return loading ? <div>Loading...</div> : <CurrencySelect />
+  return loading ? <div>Loading...</div> : <CurrencySelect type="from" />
 }
 
 export default CurrencyConverter
