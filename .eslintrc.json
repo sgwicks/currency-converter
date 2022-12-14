@@ -6,6 +6,7 @@
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:react-hooks/recommended",
+    "plugin:react-redux/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "prettier"
@@ -22,6 +23,7 @@
     "react",
     "jsx-a11y",
     "react-hooks",
+    "react-redux",
     "@typescript-eslint"
   ],
   "parserOptions": {
