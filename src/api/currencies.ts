@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // If I were being super-serious about this, I'd have a list of allowable Currency strings
-interface Currency {
+export interface Currency {
   [k: string]: {
     code: string
     alphaCode: string

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react'
+import React, { FunctionComponent } from 'react'
 import { useAppSelector, useAppDispatch } from '../hooks/store'
 import { setCurrency } from '../store/slices/currencies'
 
@@ -12,16 +12,20 @@ const CurrencySelect: FunctionComponent<CurrencySelectProps> = ({ type }) => {
   const dispatch = useAppDispatch()
 
   return (
-    <select
-      value={value}
-      onChange={(e) => dispatch(setCurrency({ code: e.target.value, type }))}
-    >
-      {options.map((option) => (
-        <option key={option.code} value={option.code}>
-          {option.name}
-        </option>
-      ))}
-    </select>
+    <label>
+      Convert {type}:
+      <select
+        value={value}
+        onChange={(e) => dispatch(setCurrency({ code: e.target.value, type }))}
+      >
+        <option value={undefined}>Choose a currency</option>
+        {options.map((option) => (
+          <option key={option.code} value={option.code}>
+            {option.name}
+          </option>
+        ))}
+      </select>
+    </label>
   )
 }
 
