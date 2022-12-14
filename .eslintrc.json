@@ -17,7 +17,7 @@
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/no-explicit-any": 0
   },
-  "ignorePatterns": ["*.test.js", "__mocks__/**/*"],
+  "ignorePatterns": ["*.test.js", "__mocks__/**/*", ".config.js"],
   "plugins": [
     "import",
     "react",

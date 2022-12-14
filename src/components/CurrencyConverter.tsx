@@ -10,6 +10,9 @@ import {
 } from '../store/slices/currencies'
 import CurrencySelect from './CurrencySelect'
 
+import styles from './CurrencyConverter.module.css'
+const { form, total } = styles
+
 const CurrencyConverter = () => {
   const [loading, setLoading] = useState<boolean>(true)
   const amount = useAppSelector((state) => state.currencies.amount)
@@ -61,15 +64,18 @@ const CurrencyConverter = () => {
   return loading ? (
     <div>Loading...</div>
   ) : (
-    <div>
+    <div className={form}>
       <CurrencySelect type="from" />
-      <input
-        type="number"
-        value={amount || ''}
-        onChange={(e) => dispatch(setAmount(Number(e.target.value)))}
-      />
+      <label>
+        Amount:
+        <input
+          type="number"
+          value={amount || ''}
+          onChange={(e) => dispatch(setAmount(Number(e.target.value)))}
+        />
+      </label>
       <CurrencySelect type="to" />
-      <div>Total: {currencyLoading ? 'Calculating...' : output}</div>
+      <div className={total}>{currencyLoading ? 'Calculating...' : output}</div>
     </div>
   )
 }

@@ -1,0 +1,32 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	width: 450px;
+	max-width: 100%;
+	padding: 16px;
+	border: solid black 2px;
+	margin-inline: auto;
+}
+
+label {
+	margin-block: 16px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+select, input {
+	width: 200px;
+	margin: 0;
+}
+input {
+	padding: 0;
+	-webkit-appearance: none;
+	-moz-appearance: textfield;
+}
+
+.total {
+	margin-block-start: 24px;
+	text-align: center;
+	font-size: 1.5em;
+}
